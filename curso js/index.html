@@ -7,9 +7,62 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="result"></div>
+
+    <form name="todo">
+        <input placeholder="Informe aqui" type="text" name="description" required>
+
+        <button type="submit">gravar</button>
+    </form>
+
     <script>
-        
+        const name = 'todo';
+        const getData = () => JSON.parse(localStorage.getItem(name)) || [];
+        const setData = () => localStorage.setItem(name, JSON.stringify([...getData(), description]))
+
+        const loaditens = () => {
+            const results = document.getElementById('results');
+            const itens = getData();
+
+            while(result.firstChild){
+                results.removeChild(result.firstChild);
+            }
+
+            itens.forEach(element => {
+            let span = document.createElement('span');
+
+            span.innerText = form.description.value;
+
+            var lastData = JSON.parse(localStorage.getItem('todo'))
+            localStorage.setItem('todo', JSON.stringify(...lastdata, [form.description.value]))
+
+            let a = document.createElement('a')
+            a.setAttribute('href', '#');
+            a.innerText = 'remover';
+
+            a.addEventListener('click', () => {
+                //todo
+            })
+
+            let div = document.createElement('div');
+            div.append(span);
+            div.append(a);
+            let result = document.querySelector('#result')
+            result.append(div);
+            });
+        }
+
+
+        const form = document.forms.todo;
+    
+        form.addEventListener('submit', function(event){
+            event.preventDefault();
+
+            setData(form.description.value)
+            
+            loaditens();
+        });
+
     </script>
 </body>
 </html>
